@@ -1,0 +1,13 @@
+{% extends "core_templates/base.html" %}
+
+
+{% block main %}
+    <ul>
+        
+        {% for p in pessoa %}
+            <li>{{p}} </li>
+        {% endfor %}
+            
+    </ul>
+{% endblock main %}
+    
