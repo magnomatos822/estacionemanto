@@ -1,0 +1,18 @@
+{% extends "core_templates/base.html" %}
+
+
+
+{% block title %}
+    Lista de Veiculos
+{% endblock title %}
+
+
+{% block main %}
+    <ul>        
+        {% for veiculo in veiculos %}
+            <li>{{veiculo.marca}}</li>
+        {% endfor %}
+    </ul>
+{% endblock main %}
+    
+    

@@ -1,13 +1,12 @@
 {% extends "core_templates/base.html" %}
 
-
 {% block main %}
-    <ul>
-        
-        {% for p in pessoa %}
-            <li>{{p}} </li>
-        {% endfor %}
-            
-    </ul>
+<h1>Lista de Pessoas</h1>
+<ul>
+
+    {% for pessoa in pessoas %}
+    <li>{{pessoa}} </li>
+    {% endfor %}
+
+</ul>
 {% endblock main %}
-    
