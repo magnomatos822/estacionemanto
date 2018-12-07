@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "/home/hal/anaconda3/envs/Estacionamento/bin/python"
+    "python.pythonPath": "C:\\ProgramData\\Miniconda3\\envs\\estacionamento\\python.exe",
+    "python.linting.pylintEnabled": true
 }

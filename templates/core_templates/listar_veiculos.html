@@ -10,7 +10,7 @@
 {% block main %}
     <ul>        
         {% for veiculo in veiculos %}
-            <li>{{veiculo.marca}}</li>
+            <li>{{veiculo.marca}} - {{veiculo.placa}}</li>
         {% endfor %}
     </ul>
 {% endblock main %}
