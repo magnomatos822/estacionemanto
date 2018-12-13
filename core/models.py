@@ -78,6 +78,7 @@ class Movimento(models.Model):
     checkout = models.DateTimeField(auto_now=False, blank=True, null=True)
     valor_hora = models.DecimalField(max_digits=5, decimal_places=2)
     veiculo = models.ForeignKey(Veiculo, on_delete=models.CASCADE)
+    proprietario = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
     pagamento = models.BooleanField(default=False)
 
 
@@ -90,6 +91,7 @@ class Movimento(models.Model):
     def __str__(self):
         """Unicode representation of Movimento."""
         return self.veiculo.placa
+        
     
     def total_horas(self):
         return math.ceil((self.checkout - self.chekin).total_seconds()/3600)

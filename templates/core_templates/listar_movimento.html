@@ -1,0 +1,34 @@
+{% extends 'core_templates/base.html' %}
+
+
+
+{% block title %}
+    Movimento Diário
+{% endblock title %}
+    
+{% block main %}
+        <h1>Template Listar Movimento</h1>
+    <table class="table table-hover">
+    
+    <thead>
+        <tr>
+        <th scope="col">{{ movimento.id }}</th>
+        <th scope="col">Placa</th>
+        <th scope="col">Proprietário</th>        
+        <th scope="col">Pagamento</th>
+        </tr>
+        </thead>
+    <tbody>
+    {% for movimento in movimentos %}
+        <tr>
+        <th scope="row">1</th>
+        <td>{{movimento.veiculo}}</td>
+        <td>{{movimento.proprietario}}</td>        
+        <td>{{movimento.pagamento}}</td>
+        </tr>            
+    ({% endfor %}
+    </tbody>
+    </table>
+            </ul>        
+{% endblock main %}
+

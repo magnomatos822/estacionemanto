@@ -13,6 +13,7 @@ from core.models import(
 class MovimentoRotativoAdmin(admin.ModelAdmin):
     list_display =(
         'veiculo',
+        'proprietario',
         'chekin', 
         'checkout',
         'valor_hora',
