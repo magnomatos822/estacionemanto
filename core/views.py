@@ -1,14 +1,19 @@
 # from django.http import HttpResponse
-from django.shortcuts import (render,
-                              redirect)
+from .forms import (MensalistaForm,
+                    MovRotativoForm,
+                    PessoaForm,
+                    VeiculoForm,
+                    MovMesForm)
+
+
 from .models import (Mensalista,
                      MovMensalista,
                      Movimento,
                      Pessoa,
                      Veiculo)
 
-from .forms import (PessoaForm,
-                    VeiculoForm)
+from django.shortcuts import redirect, render
+
 
 
 def home(request):
@@ -33,7 +38,7 @@ def pessoaNovo(request):
 def listaVeiculos(request):
     veiculos = Veiculo.objects.all()
     form = VeiculoForm()
-    data = {'veiculos': veiculos, 'form':form}
+    data = {'veiculos': veiculos, 'form': form}
     return render(request, 'core_templates/listar_veiculos.html', data)
 
 
@@ -41,21 +46,51 @@ def veiculoNovo(request):
     form = VeiculoForm(request.POST or None)
     if form.is_valid():
         form.save()
-        
+
     return redirect('core_list_veiculos')
 
 
 def movRotativoLista(request):
     movimentos = Movimento.objects.all()
-    return render(request, 'core_templates/listar_movimento.html', {'movimentos': movimentos})
+    form = MovRotativoForm()
+    data = {'movimentos': movimentos, 'form': form}
+    return render(request, 'core_templates/listar_movimento.html', data)
+
+
+def movRotativoNovo(request):
+    form = MovRotativoForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    return redirect('core_list_movimento')
 
 
 def listaMensalista(request):
     mensalistas = Mensalista.objects.all()
-    return render(request, 'core_templates/listar_mensalista.html', {'mensalistas': mensalistas})
+    form = MensalistaForm()
+    data = {'mensalistas': mensalistas, 'form': form}
+    return render(request, 'core_templates/listar_mensalista.html', data)
+
+
+def mensalistaNovo(request):
+    form = MensalistaForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    return redirect('core_list_mensalista')
 
 
 def movMensalista(request):
     movimentoMensalista = MovMensalista.objects.all()
+    form = MovMesForm()
+    data = {'movMensalista': movimentoMensalista, 'form':form}
     return render(request, 'core_templates/listar_movmensalista.html',
-                  {'movMensalista': movimentoMensalista})
+                  data)
+
+
+def movMesNovo(request):
+    form = MovMesForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    return redirect('core_movMes')

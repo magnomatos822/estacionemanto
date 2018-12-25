@@ -31,5 +31,10 @@ Movimento Mensalistap
         {% endfor %}
     </tbody>
 </table>
-
+    <form action="{% url 'core_mov_mes_novo' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Salvar</button>
+            
+    </form>
 {% endblock main %}

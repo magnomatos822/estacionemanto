@@ -26,9 +26,14 @@
         <td>{{movimento.proprietario}}</td>        
         <td>{{movimento.pagamento}}</td>
         </tr>            
-    ({% endfor %}
+    {% endfor %}
     </tbody>
     </table>
-            </ul>        
+            </ul>     
+    <form action="{% url 'core_rot_novo' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="" type="submit">Enviar</button>
+    </form>   
 {% endblock main %}
 

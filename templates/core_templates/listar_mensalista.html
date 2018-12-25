@@ -20,8 +20,13 @@
                 <td>{{ mensalista.valor_mes }}</td>
                 <td>{{ mensalista.pago }}<td/>
             </tr>
-            {% endfor %}
+        {% endfor %}
         </tbody>
     </table>
+    <form action="{% url 'core_men_novo' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salvar</button>
+    </form>
 {% endblock main %}
 
