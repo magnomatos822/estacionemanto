@@ -1,20 +1,20 @@
 from django.contrib import admin
-from core.models import(    
-                            Marca, 
-                            Mensalista, 
-                            Movimento, 
-                            Parametro, 
-                            Pessoa,
-                            Veiculo,
-                            MovMensalista,   
-                                )
+from core.models import (
+    Marca,
+    Mensalista,
+    Movimento,
+    Parametro,
+    Pessoa,
+    Veiculo,
+    MovMensalista,
+)
 
 
 class MovimentoRotativoAdmin(admin.ModelAdmin):
-    list_display =(
+    list_display = (
         'veiculo',
         'proprietario',
-        'chekin', 
+        'chekin',
         'checkout',
         'valor_hora',
         'pagamento',
@@ -22,8 +22,9 @@ class MovimentoRotativoAdmin(admin.ModelAdmin):
         'total',
     )
 
+
 class MensalistaAdim(admin.ModelAdmin):
-    list_display =(
+    list_display = (
         'veiculo',
         'inicio',
         'valor_mes',

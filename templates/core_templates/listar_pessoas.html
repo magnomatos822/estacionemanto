@@ -9,4 +9,11 @@
     {% endfor %}
 
 </ul>
+<form method="post" action="{% url 'core_pessoaNovo' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Submit</button>
+    
+</form>
 {% endblock main %}

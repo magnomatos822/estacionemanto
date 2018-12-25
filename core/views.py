@@ -1,12 +1,14 @@
-from builtins import object
-from django.http import HttpResponse
-from django.shortcuts import render
-from core.models import (
-    Mensalista, 
-    Movimento, 
-    Pessoa, 
-    Veiculo,
-)
+# from django.http import HttpResponse
+from django.shortcuts import (render,
+                              redirect)
+from .models import (Mensalista,
+                     MovMensalista,
+                     Movimento,
+                     Pessoa,
+                     Veiculo)
+
+from .forms import (PessoaForm,
+                    VeiculoForm)
 
 
 def home(request):
@@ -15,19 +17,45 @@ def home(request):
 
 def listaPessoas(request):
     pessoas = Pessoa.objects.all()
-    return render(request, 'core_templates/listar_pessoas.html', {'pessoas':pessoas})
+    form = PessoaForm()
+    data = {'pessoas': pessoas, 'form': form}
+    return render(request, 'core_templates/listar_pessoas.html', data)
+
+
+def pessoaNovo(request):
+    form = PessoaForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    return redirect('core_list_pessoas')
 
 
 def listaVeiculos(request):
     veiculos = Veiculo.objects.all()
-    return render(request, 'core_templates/listar_veiculos.html', {'veiculos':veiculos})
+    form = VeiculoForm()
+    data = {'veiculos': veiculos, 'form':form}
+    return render(request, 'core_templates/listar_veiculos.html', data)
+
+
+def veiculoNovo(request):
+    form = VeiculoForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        
+    return redirect('core_list_veiculos')
 
 
 def movRotativoLista(request):
     movimentos = Movimento.objects.all()
-    return render(request, 'core_templates/listar_movimento.html', {'movimentos':movimentos})
+    return render(request, 'core_templates/listar_movimento.html', {'movimentos': movimentos})
 
 
 def listaMensalista(request):
     mensalistas = Mensalista.objects.all()
     return render(request, 'core_templates/listar_mensalista.html', {'mensalistas': mensalistas})
+
+
+def movMensalista(request):
+    movimentoMensalista = MovMensalista.objects.all()
+    return render(request, 'core_templates/listar_movmensalista.html',
+                  {'movMensalista': movimentoMensalista})

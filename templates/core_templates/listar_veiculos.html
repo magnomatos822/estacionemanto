@@ -13,6 +13,11 @@
             <li>{{veiculo.marca}} - {{veiculo.placa}}</li>
         {% endfor %}
     </ul>
+    <form action="{% url 'core_veiculoNovo' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
 {% endblock main %}
     
     

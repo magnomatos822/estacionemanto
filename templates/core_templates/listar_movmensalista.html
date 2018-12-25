@@ -1,0 +1,35 @@
+{% extends "core_templates/base.html" %}
+
+{% block title %}
+Movimento Mensalistap
+{% endblock title %}
+
+{% block main %}
+
+
+<h1>Template Listar Movimento Mensalista</h1>
+<table class="table table-hover">
+
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Placa</th>
+            <th scope="col">Proprietário</th>
+            <th scope="col">Pagamento</th>
+            <th scope="col">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for movimento in movMensalista %}
+        <tr>
+            <th scope="row">{{ movimento.id }}</th>
+            <td>{{movimento.mensalista.veiculo}}</td>
+            <td>{{movimento.mensalista.veiculo.proprietario}}</td>
+            <td>{{movimento.dt_pgto}}</td>
+            <td>{{movimento.total}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock main %}
