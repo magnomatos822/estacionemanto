@@ -5,7 +5,7 @@
 <ul>
 
     {% for pessoa in pessoas %}
-    <li>{{pessoa}} </li>
+    <li> <a href="{% url 'core_pessoa_update' pessoa.id %}">{{pessoa}}</a> </li>
     {% endfor %}
 
 </ul>
@@ -14,6 +14,6 @@
     {{ form.as_p }}
 
     <button type="submit">Submit</button>
-    
+
 </form>
 {% endblock main %}
