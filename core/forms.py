@@ -1,9 +1,5 @@
 from django.forms import ModelForm
-from .models import (Pessoa,
-                     Veiculo,
-                     Movimento,
-                     Mensalista,
-                     MovMensalista)
+from .models import (Pessoa, Veiculo, Movimento, Mensalista, MovMensalista)
 
 
 class PessoaForm(ModelForm):
@@ -35,6 +31,7 @@ class MovRotativoForm(ModelForm):
         model = Movimento
         fields = ('__all__')
 
+
 class MensalistaForm(ModelForm):
     """Form definition for Mensalista."""
 
@@ -43,6 +40,7 @@ class MensalistaForm(ModelForm):
 
         model = Mensalista
         fields = ('__all__')
+
 
 class MovMesForm(ModelForm):
     """Form definition for MovMes."""
