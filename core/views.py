@@ -1,16 +1,17 @@
 # from django.http import HttpResponse
-from .forms import (MensalistaForm,
+from .forms import (
+                    MensalistaForm,
+                    MovMesForm,
                     MovRotativoForm,
                     PessoaForm,
-                    VeiculoForm,
-                    MovMesForm)
+                    VeiculoForm)
 
-
-from .models import (Mensalista,
-                     MovMensalista,
-                     Movimento,
-                     Pessoa,
-                     Veiculo)
+from .models import (
+                    Mensalista,
+                    MovMensalista,
+                    Movimento,
+                    Pessoa,
+                    Veiculo)
 
 from django.shortcuts import redirect, render
 
@@ -56,6 +57,14 @@ def listaVeiculos(request):
     return render(request, 'core_templates/listar_veiculos.html', data)
 
 
+def veiculoNovo(request):
+    form = VeiculoForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    return redirect('core_list_veiculos')
+
+
 def veiculoUpdate(request, id):
     data = {}
     veiculo = Veiculo.objects.get(id=id)
@@ -71,14 +80,6 @@ def veiculoUpdate(request, id):
         return render(request, 'core_templates/veiculo_update.html', data)
 
 
-def veiculoNovo(request):
-    form = VeiculoForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-
-    return redirect('core_list_veiculos')
-
-
 def movRotativoLista(request):
     movimentos = Movimento.objects.all()
     form = MovRotativoForm()
@@ -92,6 +93,19 @@ def movRotativoNovo(request):
         form.save()
 
     return redirect('core_list_movimento')
+
+
+def movRotUpdate(request, id):
+    data = {}
+    movRot = Movimento.objects.get(id=id)
+    form = MovRotativoForm(request.POST or None, instance=movRot)
+    data['movRot'] = movRot
+    data['form'] = form
+    if form.is_valid():
+        form.save()
+        return redirect('core_list_movimento')
+    else:
+        return render(request, 'core_templates/mov_rot_update.html', data)
 
 
 def listaMensalista(request):

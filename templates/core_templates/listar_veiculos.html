@@ -9,7 +9,7 @@
                 {{veiculo.marca}} - {{veiculo.placa}}</a></li>
         {% endfor %}
     </ul>
-    <form action="{% url 'core_veiculoNovo'  %}" method="post">
+    <form action="{% url 'core_veiculoNovo' %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Salvar</button>

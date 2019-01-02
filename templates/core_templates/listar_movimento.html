@@ -22,7 +22,7 @@
     {% for movimento in movimentos %}
         <tr>
         <th scope="row">1</th>
-        <td>{{movimento.veiculo}}</td>
+        <td><a href="{% url 'core_rot_update' movimento.id%}">{{movimento.veiculo}}</a></td>
         <td>{{movimento.proprietario}}</td>        
         <td>{{movimento.pagamento}}</td>
         </tr>            
@@ -30,10 +30,10 @@
     </tbody>
     </table>
             </ul>     
-    <form action="{% url 'core_rot_novo' %}" method="post">
+    <form action="{% url 'core_rot_novo'%}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="" type="submit">Enviar</button>
+        <button type="submit">Enviar</button>
     </form>   
 {% endblock main %}
 
