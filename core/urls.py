@@ -11,24 +11,26 @@ from core.views import (
     movRotativoNovo,
     mensalistaNovo,
     movMesNovo,
-    pessoaUpdate
+    pessoaUpdate,
+    veiculoUpdate,
 )
 
 urlpatterns = [
     path('', home, name='core_name'),
-    path('pessoa_novo/', pessoaNovo , name='core_pessoaNovo'),
+    path('pessoa_novo/', pessoaNovo, name='core_pessoaNovo'),
     path('listar_pessoas/', listaPessoas, name='core_list_pessoas'),
     path('pessoa_update/<int:id>', pessoaUpdate, name='core_pessoa_update'),
 
     path('listar_veiculos/', listaVeiculos, name='core_list_veiculos'),
     path('veiculo_novo/', veiculoNovo, name='core_veiculoNovo'),
+    path('veiculo_update/<int:id>', veiculoUpdate, name='core_veiculo_update'),
 
     path('lista_movimento/', movRotativoLista, name='core_list_movimento'),
     path('mov_rotativo_novo/', movRotativoNovo, name='core_rot_novo'),
 
     path('lista_mensalista/', listaMensalista, name='core_list_mensalista'),
     path('mensalista_novo/', mensalistaNovo, name='core_men_novo'),
-    
+
     path('lista_mov_mes/', movMensalista, name='core_movMes'),
     path('mov_mes_novo/', movMesNovo, name='core_mov_mes_novo'),
 

@@ -1,4 +1,4 @@
-{% extends "core_templates/base.html" %}
+{% extends 'core_templates/base.html' %}
 
 
 
@@ -10,10 +10,11 @@
 {% block main %}
     <ul>        
         {% for veiculo in veiculos %}
-            <li>{{veiculo.marca}} - {{veiculo.placa}}</li>
+            <li><a href="{% url 'core_veiculo_update'%}">
+                {{veiculo.marca}} - {{veiculo.placa}}</a></li>
         {% endfor %}
     </ul>
-    <form action="{% url 'core_veiculoNovo' %}" method="post">
+    <form action="{% url 'core_veiculoNovo'  %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Salvar</button>

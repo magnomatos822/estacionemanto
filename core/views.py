@@ -56,6 +56,21 @@ def listaVeiculos(request):
     return render(request, 'core_templates/listar_veiculos.html', data)
 
 
+def veiculoUpdate(request, id):
+    data = {}
+    veiculo = Veiculo.objects.get(id=id)
+    form = VeiculoForm(request.POST or None, instance=veiculo)
+    data['veiculo'] = veiculo
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_list_veiculos')
+    else:
+        return render(request, 'core_templates/veiculo_update.html', data)
+
+
 def veiculoNovo(request):
     form = VeiculoForm(request.POST or None)
     if form.is_valid():
