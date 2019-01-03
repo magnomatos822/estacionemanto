@@ -23,7 +23,7 @@ Movimento Mensalistap
         {% for movimento in movMensalista %}
         <tr>
             <th scope="row">{{ movimento.id }}</th>
-            <td>{{movimento.mensalista.veiculo}}</td>
+            <td><a href="{% url 'core_mes_update' movimento.id %}">{{movimento.mensalista.veiculo}}</a></td>
             <td>{{movimento.mensalista.veiculo.proprietario}}</td>
             <td>{{movimento.dt_pgto}}</td>
             <td>{{movimento.total}}</td>

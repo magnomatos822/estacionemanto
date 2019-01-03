@@ -1,0 +1,12 @@
+{% extends 'core_templates/base.html' %}
+
+{% block main %}
+    <form action="{% url 'core_mes_update'  movmensalista.id %}" method="post">
+        
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Atualizar</button>
+    </form>
+{% endblock main %}

@@ -140,3 +140,17 @@ def movMesNovo(request):
         form.save()
 
     return redirect('core_movMes')
+
+
+def movMenUpdate(request, id):
+    data = {}
+    movmensalista = MovMensalista.objects.get(id=id)
+    form = MovMesForm(request.POST or None, instance=movmensalista)
+    data['movmensalista'] = movmensalista
+    data['form'] = form
+    if form.is_valid():
+        form.save()
+        return redirect('core_movMes')
+    else:
+        return render(request,
+                      'core_templates/mov_mensalista_update.html', data)
