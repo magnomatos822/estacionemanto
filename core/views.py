@@ -1,8 +1,15 @@
 # from django.http import HttpResponse
-from .forms import (MensalistaForm, MovMesForm, MovRotativoForm, PessoaForm,
+from .forms import (MensalistaForm,
+                    MovMesForm,
+                    MovRotativoForm,
+                    PessoaForm,
                     VeiculoForm)
 
-from .models import (Mensalista, MovMensalista, Movimento, Pessoa, Veiculo)
+from .models import (Mensalista,
+                     MovMensalista,
+                     Movimento,
+                     Pessoa,
+                     Veiculo)
 
 from django.shortcuts import redirect, render
 
@@ -39,6 +46,16 @@ def pessoaUpdate(request, id):
             return redirect('core_list_pessoas')
     else:
         return render(request, 'core_templates/pessoa_update.html', data)
+
+
+def pessoaDelete(request, id):
+    pessoa = Pessoa.objects.get(id=id)
+    if request.method == 'POST':
+        pessoa.delete()
+        return redirect('core_list_pessoas')
+    else:
+        return render(request, 'core_templates/delete_confirm.html', 
+        {'pessoa': pessoa})
 
 
 def listaVeiculos(request):
@@ -152,5 +169,5 @@ def movMenUpdate(request, id):
         form.save()
         return redirect('core_movMes')
     else:
-        return render(request,
-                      'core_templates/mov_mensalista_update.html', data)
+        return render(request, 'core_templates/mov_mensalista_update.html',
+                      data)
