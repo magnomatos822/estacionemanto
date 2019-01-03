@@ -1,17 +1,8 @@
 # from django.http import HttpResponse
-from .forms import (
-                    MensalistaForm,
-                    MovMesForm,
-                    MovRotativoForm,
-                    PessoaForm,
+from .forms import (MensalistaForm, MovMesForm, MovRotativoForm, PessoaForm,
                     VeiculoForm)
 
-from .models import (
-                    Mensalista,
-                    MovMensalista,
-                    Movimento,
-                    Pessoa,
-                    Veiculo)
+from .models import (Mensalista, MovMensalista, Movimento, Pessoa, Veiculo)
 
 from django.shortcuts import redirect, render
 
@@ -123,12 +114,24 @@ def mensalistaNovo(request):
     return redirect('core_list_mensalista')
 
 
+def mensalistaUpdate(request, id):
+    data = {}
+    mensalista = Mensalista.objects.get(id=id)
+    form = MensalistaForm(request.POST or None, instance=mensalista)
+    data['mensalista'] = mensalista
+    data['form'] = form
+    if form.is_valid():
+        form.save()
+        return redirect('core_list_mensalista')
+    else:
+        return render(request, 'core_templates/mensalista_update.html', data)
+
+
 def movMensalista(request):
     movimentoMensalista = MovMensalista.objects.all()
     form = MovMesForm()
     data = {'movMensalista': movimentoMensalista, 'form': form}
-    return render(request, 'core_templates/listar_movmensalista.html',
-                  data)
+    return render(request, 'core_templates/listar_movmensalista.html', data)
 
 
 def movMesNovo(request):
