@@ -1,4 +1,5 @@
-# from django.http import HttpResponse
+from django.http import HttpResponse
+
 from .forms import (MensalistaForm,
                     MovMesForm,
                     MovRotativoForm,
@@ -54,8 +55,8 @@ def pessoaDelete(request, id):
         pessoa.delete()
         return redirect('core_list_pessoas')
     else:
-        return render(request, 'core_templates/delete_confirm.html', 
-        {'pessoa': pessoa})
+        return render(request, 'core_templates/delete_confirm.html',
+                      {'obj': pessoa})
 
 
 def listaVeiculos(request):
@@ -88,6 +89,16 @@ def veiculoUpdate(request, id):
         return render(request, 'core_templates/veiculo_update.html', data)
 
 
+def veiculoDelete(request, id):
+    veiculo = Veiculo.objects.get(id=id)
+    if request.method == 'POST':
+        veiculo.delete()
+        return redirect('core_list_veiculos')
+    else:
+        return render(request, 'core_templates/veiculo_delete_confirm.html',
+         {'param':veiculo})
+
+
 def movRotativoLista(request):
     movimentos = Movimento.objects.all()
     form = MovRotativoForm()
@@ -114,6 +125,15 @@ def movRotUpdate(request, id):
         return redirect('core_list_movimento')
     else:
         return render(request, 'core_templates/mov_rot_update.html', data)
+
+
+def movDelete(request, id):
+    movimento = Movimento.objects.get(id=id)
+    if request.methods == 'POST':
+        movimento.delete()
+        return redirect('core_list_movimento')
+    else:
+        return render(request, 'movimento_delete_confirm.html',{'param':movimento})
 
 
 def listaMensalista(request):
